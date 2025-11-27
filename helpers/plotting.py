@@ -22,7 +22,7 @@ def plot_vectors(vector, rotated_vector):
 def plot_hist(sums_list):
     sns.set_style("white")
     sns.set_context("talk")
-    sns.histplot(sums_list, kde=True, bins=12)
+    sns.histplot(sums_list, kde=True, bins=6, kde_kws={'bw_adjust': 1}, color='purple')
     plt.ylabel("")
     plt.yticks([])
     sns.despine(left=True)
@@ -38,9 +38,9 @@ def plot_decision_boundary(clf, X, y):
     Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
     Z = Z.reshape(xx.shape)
 
-    if type(X) == pd.DataFrame:
+    if isinstance(X, pd.DataFrame):
         X = X.values
-    if type(y) == pd.Series:
+    if isinstance(y, pd.Series):
         y = y.values
 
     x1 = X[:, 0]
